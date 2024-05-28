@@ -1,0 +1,34 @@
+
+<nav>
+    <div class="nav-wrapper teal">
+        <a href="#" class="brand-logo center">Pokédex</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div *ngFor="let element of pokemon_list" 
+    (click)="selectPokemon(element.name)"
+    class="col m4 s6">
+        <div class="card horizontal" appBorderCard>
+            <div class="card-image">
+                <img [src]="element.picture">
+            </div> 
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p>{{element.name}}</p>
+                <p><small>{{element.created | date}}</small></p>
+                <span *ngFor="let type of element.types" class="{{type | pokemonTypeColor}}">
+                    {{type}}
+                </span>
+                </div>               
+            </div>           
+        </div>        
+    </div>
+    
+</div>
+
+
+<div [innerHTML]="selected_pokemon" >
+    
+</div>
