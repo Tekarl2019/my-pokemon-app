@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
         <div *ngFor="let element of pokemon_list" 
-    class="col m4 s6">
+    class="col m4 s6"
+    (click)="showDetails(element.id)">
         <div class="card horizontal" appBorderCard>
             <div class="card-image">
                 <img [src]="element.picture">
