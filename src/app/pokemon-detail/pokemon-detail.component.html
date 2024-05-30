@@ -1,1 +1,44 @@
-<p>pokemon-detail works!</p>
+<div *ngIf="selected_pokemon" class="row">
+    <div class="col s12 m8 offset-m2">
+    <h2 class="header center">{{ selected_pokemon.name }}</h2>
+    <div class="card horizontal hoverable">
+      <div class="card-image">
+        <img [src]="selected_pokemon.picture">
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+          <table class="bordered striped">
+            <tbody>
+              <tr>
+                <td>Nom</td>
+                <td><strong>{{ selected_pokemon.name }}</strong></td>
+              </tr>
+              <tr>
+                <td>Points de vie</td>
+                <td><strong>{{ selected_pokemon.hp }}</strong></td>
+              </tr>
+              <tr>
+                <td>Dégâts</td>
+                <td><strong>{{ selected_pokemon.cp }}</strong></td>
+              </tr>
+              <tr>
+                <td>Types</td>
+                <td>
+                  <span *ngFor="let type of selected_pokemon.types" class="{{ type | pokemonTypeColor }}">{{ type }}</span>
+                </td>
+              </tr>
+              <tr>
+                <td>Date de création</td>
+                <td><em>{{ selected_pokemon.created | date:"dd/MM/yyyy" }}</em></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-action">
+          <a (click)="goBack()">Retour</a>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    <h4 *ngIf='!selected_pokemon' class="center">Aucun pokémon à afficher !</h4>
