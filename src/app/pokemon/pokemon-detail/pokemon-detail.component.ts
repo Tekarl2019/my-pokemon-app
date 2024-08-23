@@ -22,7 +22,7 @@ export class PokemonDetailComponent implements OnInit {
       this.selected_pokemon = this.pokemon_list.find(element => element.id == +selected_pokemon_id);
     }
   }
-  goBack(){
+  showList(){
     this.router.navigate(['pokemons']);
   }
 
