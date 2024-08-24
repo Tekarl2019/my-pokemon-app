@@ -28,5 +28,8 @@ export class PokemonDetailComponent implements OnInit {
   showList(){
     this.router.navigate(['pokemons']);
   }
-
+  edit(){
+    if(this.selected_pokemon)
+    this.router.navigate(['edit/pokemon', this.selected_pokemon.id]);
+  }
 }
