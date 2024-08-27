@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Pokemon } from './pokemon';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable(/*{
@@ -17,6 +17,31 @@ export class PokemonService {
   getPokemonById(id: number): Observable<Pokemon|undefined>{
     return this.http.get<Pokemon>(`api/pokemons/${id}`);
   }
+
+
+  updatePokemon(pokemon: Pokemon):Observable<Object>{
+    const httpOptions = {
+      headers: new HttpHeaders({'conten-Type': 'application/json'})
+    };
+   return this.http.put('api/pokemons', pokemon, httpOptions) ;
+  }
+
+
+  deletePokemonById(id: number):Observable<Object>{
+   
+   return this.http.delete(`api/pokemons/${id}`) ;
+  }
+
+
+  createPokemon(pokemon: Pokemon):Observable<Pokemon>{
+
+    const httpOptions = {
+      headers: new HttpHeaders({'conten-Type': 'application/json'})
+    };
+   return this.http.post<Pokemon>('api/pokemons', pokemon, httpOptions) ;
+  }
+
+
 
   getPokemonTypeList(): string[]{
     return [

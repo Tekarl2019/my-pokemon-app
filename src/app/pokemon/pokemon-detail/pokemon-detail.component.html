@@ -37,9 +37,10 @@
         <div class="card-action">
           <a (click)="showList()">Retour</a>
           <a (click)="edit()">Éditer</a>
+          <a (click)="deletePokemon()">Supprimer</a>
         </div>
       </div>
     </div>
     </div>
     </div>
-    <h4 *ngIf='!selected_pokemon' class="center">Aucun pokémon à afficher !</h4>
+    <h4 *ngIf='!selected_pokemon' class="center">chargement ...</h4>
