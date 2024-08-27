@@ -8,7 +8,7 @@ import { PokemonService } from '../pokemon.service';
   template: `
     <h2 class="center">Éditer {{pokemon?.name}}</h2>
     <p *ngIf="pokemon" class="center">
-      <img [src]="pokemon?.picture">
+      <img [src]="pokemon.picture">
     </p>
     <app-pokemon-form *ngIf="pokemon" [pokemon]="pokemon"></app-pokemon-form>
   `,
@@ -24,6 +24,9 @@ export class EditPokemonComponent implements OnInit {
 }
 ngOnInit(): void {
   let id: string|null = this.route.snapshot.paramMap.get('id');
-  if(id) this.pokemon = this.pokemonService.getPokemonById(+id);
+  if(id)
+  this.pokemonService.getPokemonById(+id).subscribe(
+    pokemon => this.pokemon = pokemon
+  );
 }
 }

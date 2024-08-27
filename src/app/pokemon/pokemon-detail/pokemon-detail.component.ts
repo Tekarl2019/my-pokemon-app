@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pokemon } from '../pokemon';
-import { POKEMONS } from '../mock-pokemons';
 import { PokemonService } from '../pokemon.service';
 
 @Component({
@@ -22,7 +21,9 @@ export class PokemonDetailComponent implements OnInit {
   ngOnInit(): void {
     const selected_pokemon_id: string|null = this.route.snapshot.paramMap.get('id');
     if(selected_pokemon_id){
-      this.selected_pokemon = this.pokemonService.getPokemonById(+selected_pokemon_id);
+      this.pokemonService.getPokemonById(+selected_pokemon_id).subscribe(
+        pokemon => this.selected_pokemon = pokemon
+      );
     }
   }
   showList(){

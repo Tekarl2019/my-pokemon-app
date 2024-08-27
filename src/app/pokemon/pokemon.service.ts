@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Pokemon } from './pokemon';
-import { POKEMONS } from './mock-pokemons';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable(/*{
   providedIn: 'root' //no longer disponible from root, only from pokemon.module...see pokemon.module.ts
 }*/)
 export class PokemonService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getPokemonList(): Pokemon[]{
-    return POKEMONS;
+  getPokemonList(): Observable<Pokemon[]>{
+    return this.http.get<Pokemon[]>('api/pokemons');
   }
 
-  getPokemonById(id: number): Pokemon|undefined{
-    return POKEMONS.find(pokemon => pokemon.id == id);
+  getPokemonById(id: number): Observable<Pokemon|undefined>{
+    return this.http.get<Pokemon>(`api/pokemons/${id}`);
   }
 
   getPokemonTypeList(): string[]{
